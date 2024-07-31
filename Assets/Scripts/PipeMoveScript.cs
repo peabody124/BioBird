@@ -17,7 +17,7 @@ public class PipeMoveScript : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime);
-        Debug.Log("Bird Position " + birdScript.transform.position.x);
+        //Debug.Log("Bird Position " + birdScript.transform.position.x);
         if (birdScript.birdIsAlive != false && birdScript.transform.position.x <= -10)
         {
             birdScript.TriggerGameOver();

@@ -47,7 +47,7 @@ public class PipeSpawnScript : MonoBehaviour
         {
             spawnPipe();
             timer = 0;
-            Debug.Log("Spawn Rate: " + spawnRate); // Print spawnRate to console
+            //Debug.Log("Spawn Rate: " + spawnRate); // Print spawnRate to console
 
             // // Invoke the UpdateAndroidTrialLog event
             // updateAndroidTrialLog.Invoke();

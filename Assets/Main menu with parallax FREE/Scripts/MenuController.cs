@@ -299,7 +299,7 @@ public class MenuController : MonoBehaviour {
             float distance = Vector3.Distance(activeBackground[0].transform.localPosition, activeBackground[1].transform.localPosition);
             //Set the curve with the data
             curve = AnimationCurve.Linear(0, (backgroundsController.transform.localPosition.x), animSpeed, (distance * -1)*activeScene);
-            Debug.Log(distance * activeScene);
+            //Debug.Log(distance * activeScene);
             clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
             //And play the animation
             anim.AddClip(clip, "f");
@@ -332,7 +332,7 @@ public class MenuController : MonoBehaviour {
             float distance = Vector3.Distance(activeBackground[0].transform.localPosition, activeBackground[1].transform.localPosition);
             //Set the curve with the data
             curve = AnimationCurve.Linear(0, (backgroundsController.transform.localPosition.x), animSpeed, distance*(activeScene-1)*-1);
-            Debug.Log(distance*(activeScene - 1));
+            //Debug.Log(distance*(activeScene - 1));
             clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
             //And play the animation
             anim.AddClip(clip, "b");

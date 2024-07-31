@@ -14,15 +14,15 @@ public class AndroidBinding : MonoBehaviour
     {
         get
         {
-            Debug.Log("Bridge: Instance get");
+            //Debug.Log("Bridge: Instance get");
             if (_instance == null)
             {
-                Debug.Log("Bridge: Instance get if null");
+                //Debug.Log("Bridge: Instance get if null");
                 _instance = FindObjectOfType<AndroidBinding>();
 
                 if (_instance == null)
                 {
-                    Debug.Log("Bridge: Instance and existing object not found");
+                    //Debug.Log("Bridge: Instance and existing object not found");
                     GameObject singletonObject = new GameObject();
                     _instance = singletonObject.AddComponent<AndroidBinding>();
                     singletonObject.name = typeof(AndroidBinding).ToString() + " (Singleton)";
@@ -38,13 +38,13 @@ public class AndroidBinding : MonoBehaviour
     {
         if (_instance == null)
         {
-            Debug.Log("Bridge: Awake. Restoring");
+            //Debug.Log("Bridge: Awake. Restoring");
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            Debug.Log("Bridge: Awake. Destroying");
+            //Debug.Log("Bridge: Awake. Destroying");
             if (this != _instance)
                 Destroy(this.gameObject);
         }
@@ -119,13 +119,13 @@ public class AndroidBinding : MonoBehaviour
 
     void Start()
     {    
-        Debug.Log("Bridge: Start");
+        //Debug.Log("Bridge: Start");
         ConnectService();
         selectedDevice = "No device is selected!";
     }
 
     void ConnectService() {
-        Debug.Log("Bridge: Connect Service");
+        //Debug.Log("Bridge: Connect Service");
         // AndroidJavaClass is the Unity representation of a generic instance of java.lang.Class.
         // AndroidJavaClass Constructor - public AndroidJavaClass(string className); - Specifies the Java class name (e.g. java.lang.String).
         // Construct an AndroidJavaClass from the class name. This essentially means  
@@ -142,12 +142,12 @@ public class AndroidBinding : MonoBehaviour
         // object so the android bridge can pass in updates
 
         if (bridge == null) {
-            Debug.Log("Bridge: ERROR WTF");
+            //Debug.Log("Bridge: ERROR WTF");
         } else {
-            Debug.Log("Bridge: SUCCESS");
+            //Debug.Log("Bridge: SUCCESS");
         }
 
-        Debug.Log("Bridge: still in connectService");
+        //Debug.Log("Bridge: still in connectService");
 
         // Setup the parameters we want to send to our native plugin.
         object[] parameters = new object[2];
@@ -156,7 +156,7 @@ public class AndroidBinding : MonoBehaviour
         if (bridge != null)
         {
             bridge.Call("connectService", parameters);
-            Debug.Log("Calling connectService in if statement");
+            //Debug.Log("Calling connectService in if statement");
         }
     }
 
@@ -169,7 +169,7 @@ public class AndroidBinding : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        Debug.Log("OnApplicationFocus(), focus = " + focus + " deviceToSave = " + deviceToSave);
+        //Debug.Log("OnApplicationFocus(), focus = " + focus + " deviceToSave = " + deviceToSave);
         if (deviceToSave != "None")
         {
             if (focus)
@@ -182,7 +182,7 @@ public class AndroidBinding : MonoBehaviour
             {
                 object[] parameters = new object[1];
                 parameters[0] = unityActivity;
-                Debug.Log("Calls disconnectService in onApplicationFocus.");
+                //Debug.Log("Calls disconnectService in onApplicationFocus.");
                 bridge.Call("disconnectService", parameters);
             }
         }
@@ -197,7 +197,7 @@ public class AndroidBinding : MonoBehaviour
         parameters[0] = unityActivity;
         if (bridge != null)
         {
-            Debug.Log("Calls disconnectService in onApplicationQuit.");
+            //Debug.Log("Calls disconnectService in onApplicationQuit.");
             bridge.Call("disconnectService", parameters);
         }
     }
@@ -214,17 +214,17 @@ public class AndroidBinding : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log("[Update] Update called");
+        //Debug.Log("[Update] Update called");
 
         // Check if emgPwr is greater than 0
         if (emgPwr > 0)
         {
-            Debug.Log("[Update] emgPwr is greater than 0: " + emgPwr);
+            //Debug.Log("[Update] emgPwr is greater than 0: " + emgPwr);
 
             // Checking if OnRawEMGPwrReceived is null
             if (OnRawEMGPwrReceived != null)
             {
-                Debug.Log("[Update] Invoking OnRawEMGPwrReceived");
+                //Debug.Log("[Update] Invoking OnRawEMGPwrReceived");
                 OnRawEMGPwrReceived.Invoke(emgPwr);
             }
             else
@@ -235,7 +235,7 @@ public class AndroidBinding : MonoBehaviour
             // Checking if OnBatteryVoltageReceived is null
             if (OnBatteryVoltageReceived != null)
             {
-                Debug.Log("[Update] Invoking OnBatteryVoltageReceived");
+                //Debug.Log("[Update] Invoking OnBatteryVoltageReceived");
                 OnBatteryVoltageReceived.Invoke((float)batteryVoltage);
             }
             else
@@ -246,7 +246,7 @@ public class AndroidBinding : MonoBehaviour
             // Checking if sensor is null
             if (sensor != null)
             {
-                Debug.Log("[Update] Updating sensor text");
+                //Debug.Log("[Update] Updating sensor text");
                 sensor.text = selectedDevice;
             }
             else
@@ -256,14 +256,14 @@ public class AndroidBinding : MonoBehaviour
         }
         else
         {
-            Debug.Log("[Update] emgPwr is not greater than 0: " + emgPwr);
+            //Debug.Log("[Update] emgPwr is not greater than 0: " + emgPwr);
         }
     }
 
 
     void emgPwrUpdated(int power)
     {
-        Debug.Log("DEBUG LOG: emgPwrUpdated: " + power);
+        //Debug.Log("DEBUG LOG: emgPwrUpdated: " + power);
         emgPwr = power;
     }
 
@@ -280,7 +280,7 @@ public class AndroidBinding : MonoBehaviour
     void OnDeviceListReceived(string msg)
     {
         deviceList = CreateBleDeviceList(ParseDeviceListMsgAndClean(msg));
-        Debug.Log("DEBUG LOG: OnDeviceListReceived: " + deviceList);
+        //Debug.Log("DEBUG LOG: OnDeviceListReceived: " + deviceList);
 
         PopulateDropdown();
         // // Hack to run (Change this to a list that is populated with the devices found)
@@ -290,7 +290,7 @@ public class AndroidBinding : MonoBehaviour
 
     public void PopulateDropdown()
     {
-        Debug.Log("DEBUG LOG: PopulateDropdown");
+        //Debug.Log("DEBUG LOG: PopulateDropdown");
         SetDropdownList(dropdown, deviceList);
     }
 
@@ -298,12 +298,12 @@ public class AndroidBinding : MonoBehaviour
     public void SetDropdownList(Dropdown dropdown, List<string> myDeviceList)
     {
         print("called SetDropDownList");
-        Debug.Log("DEBUG LOG: SetDropdownList ");
+        //Debug.Log("DEBUG LOG: SetDropdownList ");
         List<string> items = new List<string>();
         if (myDeviceList == null)
         {
             items.Add("No Devices");
-            Debug.Log("DEBUG LOG: No devices found and 'No Devices' text added to list.");
+            //Debug.Log("DEBUG LOG: No devices found and 'No Devices' text added to list.");
         }
         else
         {
@@ -325,7 +325,7 @@ public class AndroidBinding : MonoBehaviour
 
     void DropdownItemSelected(Dropdown dropdown)
     {
-        Debug.Log("DropdownItemSelected is called");
+        //Debug.Log("DropdownItemSelected is called");
         int index = dropdown.value;
         if (index != 0)
         {
@@ -380,7 +380,7 @@ public class AndroidBinding : MonoBehaviour
             for (int i = 0; i < 2; i++)
             {
                 myList.Add(item + " - ch-" + (i + 1));
-                Debug.Log("DEBUG LOG: myList.add");
+                //Debug.Log("DEBUG LOG: myList.add");
             }
         }
         return myList;
@@ -414,13 +414,13 @@ public class AndroidBinding : MonoBehaviour
 
         public void onError(string errorMessage)
         {
-            Debug.Log("ENTER callback onError: " + errorMessage);
+            //Debug.Log("ENTER callback onError: " + errorMessage);
         }
 
         public void sendDeviceList(string msg)
         {
             _ab.OnDeviceListReceived(msg);
-            Debug.Log("Debug Log: sendDeviceList: " + msg);
+            //Debug.Log("Debug Log: sendDeviceList: " + msg);
         }
     }
 
@@ -502,17 +502,17 @@ public class AndroidBinding : MonoBehaviour
 
     private void LogTrial(string trial) {
         // bridge = new AndroidJavaObject("org.sralab.emgimu.unity_bindings.Bridge"); //hardcode
-        Debug.Log("LogTrial: " + trial);
+        //Debug.Log("LogTrial: " + trial);
         object[] parameters = { trial };
         if (bridge != null)
         {
             bridge.Call("logTrial", parameters);  // put some code here to fail gracefully
-            Debug.Log("Bridge: LogTrial in if statement: " + trial);
+            //Debug.Log("Bridge: LogTrial in if statement: " + trial);
         } 
         else 
         {
-            Debug.Log("ERROR: Bridge is null");
-            Debug.Log("Bridge selected sensor: " + selectedEMGDevice);
+            //Debug.Log("ERROR: Bridge is null");
+            //Debug.Log("Bridge selected sensor: " + selectedEMGDevice);
         }
     }
 
@@ -528,8 +528,8 @@ public class AndroidBinding : MonoBehaviour
         selectedDevice = selectedDeviceAndChannel;
         parameters[0] = selectedDevice;
         deviceToSave = selectedDevice;
-        Debug.Log("SendSelectedDeviceToAndroid Bridge: " + bridge);
-        Debug.Log("SendSelectedDeviceToAndroid selectedDevice: " + selectedEMGDevice);
+        //Debug.Log("SendSelectedDeviceToAndroid Bridge: " + bridge);
+        //Debug.Log("SendSelectedDeviceToAndroid selectedDevice: " + selectedEMGDevice);
         if (bridge != null)
         {
             bridge.Call("selectDevice", parameters);
@@ -539,7 +539,7 @@ public class AndroidBinding : MonoBehaviour
     // public void SetTrialNumber(int number)
     // {
     //     AndroidBinding.Instance.trialNumber = number;
-    //     Debug.Log("SetTrialNumber Bridge: " + bridge);
+    //     //Debug.Log("SetTrialNumber Bridge: " + bridge);
     // }
     public void SetPlayerLevel(string currentLevel)
     {

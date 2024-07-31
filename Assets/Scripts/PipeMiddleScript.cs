@@ -39,7 +39,7 @@ public class PipeMiddleScript : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
 
         // Print the name of the current scene
-        Debug.Log("Current Scene: " + currentScene.name);
+        //Debug.Log("Current Scene: " + currentScene.name);
     }
 
     // Update is called once per frame
@@ -60,7 +60,7 @@ public class PipeMiddleScript : MonoBehaviour
 
         if (this.gameObject.name == "Middle")
         {
-            Debug.Log("this.gameObject.name == " + this.gameObject.name);
+            //Debug.Log("this.gameObject.name == " + this.gameObject.name);
             logic.addScore(1);
 
             // Check if bird's x position is between -4 and -9
@@ -77,14 +77,14 @@ public class PipeMiddleScript : MonoBehaviour
 
         if (this.gameObject.name == "LogTrial")
         {
-            Debug.Log("this.gameObject.name == " + this.gameObject.name);
+            //Debug.Log("this.gameObject.name == " + this.gameObject.name);
             // Invoke the UpdateAndroidTrialLog event
             updateAndroidTrialLog.Invoke();
             // trialNumber++;
             // updateTrialInfoWithTrialNumber.Invoke(trialNumber);
             // //Update trial number
             // AndroidBinding.Instance.SetTrialNumber(trialNumber);
-            // Debug.Log("Trial Number: " + trialNumber);
+            // //Debug.Log("Trial Number: " + trialNumber);
         }
     }
 

@@ -11,7 +11,7 @@ public class SliderController : MonoBehaviour
     private void Start()
     {
         slider = GetComponent<Slider>();
-        Debug.Log("SliderController Start");
+        //Debug.Log("SliderController Start");
 
         // Subscribe to the EmgScaledValueChanged event
         SignalProcessingReference.signalProcessingScript.EmgScaledValueChanged += UpdateSliderValue;
@@ -21,13 +21,13 @@ public class SliderController : MonoBehaviour
     {
         // Unsubscribe from the EmgScaledValueChanged event when the script is destroyed
         signalProcessingScript.EmgScaledValueChanged -= UpdateSliderValue;
-        Debug.Log("SliderController OnDestroy");
+        //Debug.Log("SliderController OnDestroy");
     }
 
     private void UpdateSliderValue(float value)
     {
         slider.value = value;
-        Debug.Log("SliderController UpdateSliderValue: " + value);
+        //Debug.Log("SliderController UpdateSliderValue: " + value);
     }
 }
 
