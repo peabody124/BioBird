@@ -339,7 +339,7 @@ public class GameControllerScript : MonoBehaviour
 
     // private void GenerateSpaceshipPositionX()
     // {
-    //     ////Debug.Log("Called GenerateSpaceshipPositionX --> command = " + spaceshipCommandPositionX );
+    //     //Debug.Log("Called GenerateSpaceshipPositionX --> command = " + spaceshipCommandPositionX );
     //     spaceshipCommandPositionX = curveGeneratedPoints[SCREEN_SEGMENT_FOR_SPACESHIP_X_POSITION_INDEX].x;
     //     spaceshipPositionXCallback.Invoke(spaceshipCommandPositionX);
 

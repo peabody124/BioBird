@@ -89,7 +89,7 @@ public class UI : MonoBehaviour
 
     public void CallExitButton()
     {
-        //Debug.Log("Exit Button Pressed!");
+        Debug.Log("Exit Button Pressed!");
         Application.Quit();
     }
 
